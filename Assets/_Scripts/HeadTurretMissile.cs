@@ -47,10 +47,13 @@ public class HeadTurretMissile : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
+        if (other.gameObject.tag == "sword")
+            rb.AddRelativeForce(0, 0, -20, ForceMode.Impulse);
+
         isHoming = false;
-        GetComponent<Collider>().enabled = false;
-        GetComponent<MeshRenderer>().enabled = false;
-        Destroy(rb);
+        //GetComponent<Collider>().enabled = false;
+        //GetComponent<MeshRenderer>().enabled = false;
+        //Destroy(rb);
         ps.Stop();
     }
 

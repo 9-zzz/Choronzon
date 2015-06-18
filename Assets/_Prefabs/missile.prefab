@@ -13,7 +13,7 @@ GameObject:
   - 135: {fileID: 13569118}
   - 54: {fileID: 5443608}
   - 114: {fileID: 11419858}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: missile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ GameObject:
   - 4: {fileID: 499540}
   - 198: {fileID: 19869352}
   - 199: {fileID: 19979472}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: missileTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1300,6 +1300,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: InitialModule.startSize.scalar
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
