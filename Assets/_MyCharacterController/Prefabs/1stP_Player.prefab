@@ -21,6 +21,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &149332
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 481722}
+  - 65: {fileID: 6526326}
+  - 114: {fileID: 11458612}
+  m_Layer: 0
+  m_Name: Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &175130
 GameObject:
   m_ObjectHideFlags: 0
@@ -35,6 +52,7 @@ GameObject:
   - 81: {fileID: 8151286}
   - 114: {fileID: 11481948}
   - 114: {fileID: 11450238}
+  - 114: {fileID: 11470870}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -54,6 +72,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 492614}
   m_RootOrder: 0
+--- !u!4 &481722
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149332}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 492614}
+  m_RootOrder: 1
 --- !u!4 &492614
 Transform:
   m_ObjectHideFlags: 1
@@ -65,6 +95,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 424428}
+  - {fileID: 481722}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!20 &2073842
@@ -110,7 +141,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 768b0c97704a63f4fa386ac815b1e4cf, type: 2}
+  - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -131,6 +162,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110554}
   m_Mesh: {fileID: 4300000, guid: af146ecf9d91aec4d9a28b6e3ccda198, type: 3}
+--- !u!65 &6526326
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149332}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 3, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!81 &8151286
 AudioListener:
   m_ObjectHideFlags: 1
@@ -181,17 +224,30 @@ MonoBehaviour:
   InfiniteJumps: 0
   dashBar: 100
   dashRechargeRate: .5
-  ForwardSpeed: 5
+  ForwardSpeed: 7
   BackwardSpeed: 5
-  StrafingSpeed: 5
+  StrafingSpeed: 7
   SlideSpeed: 5
-  JumpSpeed: 10
+  JumpSpeed: 12
   Gravity: 9.80000019
   TerminalVelocity: 200
   SlideThreshold: .600000024
   MaxControllableSlideMagnitude: .400000006
   numOfJumps: 0
-  baseNumOfJumps: 1
+  baseNumOfJumps: 2
+--- !u!114 &11458612
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0947b5256e527074596a7d1075596961, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageFlashTime: .150000006
+  missileDamageAmt: 7
 --- !u!114 &11465960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -203,6 +259,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0318b7d76494c7e41a396d67fd3ab815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11470870
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4975a6e437fc3b149a8cd508ce5bdd69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  threshold: .25
+  intensity: .75
+  blurSize: 1
+  blurIterations: 1
+  blurType: 0
+  fastBloomShader: {fileID: 4800000, guid: 68a00c837b82e4c6d92e7da765dc5f1d, type: 3}
 --- !u!114 &11481948
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -240,13 +313,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
+  m_Height: 3
   m_Radius: .300000012
   m_SlopeLimit: 45
   m_StepOffset: .300000012
   m_SkinWidth: .0799999982
   m_MinMoveDistance: .00100000005
-  m_Center: {x: 0, y: -.100000001, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
