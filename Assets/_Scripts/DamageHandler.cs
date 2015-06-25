@@ -19,7 +19,7 @@ public class DamageHandler : MonoBehaviour
     void Start()
     {
         fader.CrossFadeAlpha(1, 1, true);
-        fader.CrossFadeAlpha(0, 6, true);
+        fader.CrossFadeAlpha(0, 3, true);
         Color tmp = new Color(253.0f / 255.0f, 20.0f / 255.0f, 73.0f / 255.0f, 180.0f / 255.0f);
         fader.color = tmp;
     }

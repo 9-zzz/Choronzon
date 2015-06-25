@@ -207,7 +207,7 @@ MonoBehaviour:
   StrafingSpeed: 7
   SlideSpeed: 5
   JumpSpeed: 12
-  Gravity: 9.80000019
+  Gravity: 20
   TerminalVelocity: 200
   SlideThreshold: .600000024
   MaxControllableSlideMagnitude: .400000006
