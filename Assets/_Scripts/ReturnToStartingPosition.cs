@@ -49,6 +49,7 @@ public class ReturnToStartingPosition : MonoBehaviour
         // Make sure has rigidbody
         rb.velocity = Vector3.zero;
         rb.constraints = RigidbodyConstraints.None;
+        rb.useGravity = false;
     }
 
     // Update is called once per frame
