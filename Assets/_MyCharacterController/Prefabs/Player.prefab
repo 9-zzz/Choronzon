@@ -332,7 +332,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InfiniteJumps: 0
-  dashBar: 100
+  currentlyDashing: 0
+  dashBar: 0
   dashRechargeRate: .5
   ForwardSpeed: 7
   BackwardSpeed: 5

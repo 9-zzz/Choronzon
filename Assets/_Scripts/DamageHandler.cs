@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -36,6 +36,12 @@ public class DamageHandler : MonoBehaviour
         {
             StartCoroutine(damageFlash());
             HealthBar.S.hp -= missileDamageAmt;
+        }
+
+        if (other.tag == "faceBullet")
+        {
+            StartCoroutine(damageFlash());
+            HealthBar.S.hp -= 2.0f;
         }
     }
 

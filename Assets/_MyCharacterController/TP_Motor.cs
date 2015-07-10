@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -8,9 +8,9 @@ public class TP_Motor : MonoBehaviour
   public static TP_Motor Instance;
 
   public bool InfiniteJumps = false;
-  private bool currentlyDashing = false;
+  public bool currentlyDashing = false;
 
-  public float dashBar = 100;
+  public float dashBar;
   public float dashRechargeRate = 0.5f;
   public float ForwardSpeed = 10f;
   public float BackwardSpeed = 2f;
@@ -37,14 +37,11 @@ public class TP_Motor : MonoBehaviour
 
   public void UpdateMotor()
   {
-    if (!currentlyDashing)
-      rechargeDashBar();
+      SnapAllignCharacterWithCamera();
+      ProcessMotion();
 
-    SnapAllignCharacterWithCamera();
-    ProcessMotion();
-
-    if (TP_Controller.CharacterController.isGrounded)
-      numOfJumps = baseNumOfJumps;
+      if (TP_Controller.CharacterController.isGrounded)
+          numOfJumps = baseNumOfJumps;
   }
 
   void ProcessMotion()
@@ -262,14 +259,6 @@ public class TP_Motor : MonoBehaviour
 
     return moveSpeed;
 
-  }
-
-  void rechargeDashBar()
-  {
-    if (dashBar <= 100)
-    {
-      dashBar += dashRechargeRate;//when not dashing
-    }
   }
 
   public float doDash(float speedToIncrease)

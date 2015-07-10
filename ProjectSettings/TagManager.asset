@@ -6,6 +6,8 @@ TagManager:
   tags:
   - sword
   - missile
+  - faceBullet
+  - terrain
   layers:
   - Default
   - TransparentFX

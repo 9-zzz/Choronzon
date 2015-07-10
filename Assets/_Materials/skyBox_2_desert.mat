@@ -19,7 +19,7 @@ Material:
       data:
         first:
           name: _Exposure
-        second: 1.29999995
+        second: 1
       data:
         first:
           name: _SunSize
@@ -27,7 +27,7 @@ Material:
       data:
         first:
           name: _AtmosphereThickness
-        second: 1.25
+        second: .850000024
     m_Colors:
       data:
         first:
@@ -36,11 +36,11 @@ Material:
       data:
         first:
           name: _SkyTint
-        second: {r: .678946435, g: .151816607, b: .79411763, a: 1}
+        second: {r: .79411763, g: .151816607, b: .64350909, a: 1}
       data:
         first:
           name: _GroundColor
-        second: {r: .0155709339, g: .117098205, b: .235294104, a: 1}
+        second: {r: .24178201, g: .276157409, b: .316176474, a: 1}
       data:
         first:
           name: _WireColor

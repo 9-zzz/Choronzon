@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .992647052, g: .0875865296, b: .25611493, a: .745098054}
+  m_Color: {r: .992647052, g: .0875865296, b: .25611493, a: .927999973}
   m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -517,9 +517,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 150
   m_WholeNumbers: 0
-  m_Value: 100
+  m_Value: 150
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -627,7 +627,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 50
   slowHealthBar: {fileID: 11444252}
-  dashBar: {fileID: 11444486}
+  dashSlider: {fileID: 11444486}
   slowHealthBarRate: 7
 --- !u!114 &11484172
 MonoBehaviour:
@@ -1026,8 +1026,8 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 78, y: -23}
-  m_SizeDelta: {x: 150, y: 8}
+  m_AnchoredPosition: {x: 155, y: -23}
+  m_SizeDelta: {x: 304, y: 8}
   m_Pivot: {x: .5, y: .5}
 --- !u!1001 &100100000
 Prefab:

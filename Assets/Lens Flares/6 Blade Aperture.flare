@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!121 &12100000
+Flare:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 6 Blade Aperture
+  m_FlareTexture: {fileID: 2800000, guid: 75353488488fb48c6b8c345857e5c9e4, type: 3}
+  m_TextureLayout: 0
+  m_Elements:
+  - m_ImageIndex: 0
+    m_Position: 0
+    m_Size: 50
+    m_Color: {r: 1, g: .95107913, b: .800000012, a: 0}
+    m_UseLightColor: 1
+    m_Rotate: 1
+    m_Zoom: 1
+    m_Fade: 1
+  - m_ImageIndex: 4
+    m_Position: 1
+    m_Size: 30
+    m_Color: {r: .146153867, g: .146153867, b: .146153867, a: 0}
+    m_UseLightColor: 1
+    m_Rotate: 1
+    m_Zoom: 1
+    m_Fade: 1
+  - m_ImageIndex: 4
+    m_Position: .75
+    m_Size: 15
+    m_Color: {r: .124260373, g: .161538482, b: .140619829, a: 0}
+    m_UseLightColor: 1
+    m_Rotate: 1
+    m_Zoom: 0
+    m_Fade: 1
+  - m_ImageIndex: 4
+    m_Position: -1
+    m_Size: 5
+    m_Color: {r: .0538461804, g: .0429994687, b: .0161538552, a: 0}
+    m_UseLightColor: 1
+    m_Rotate: 1
+    m_Zoom: 1
+    m_Fade: 1
+  - m_ImageIndex: 4
+    m_Position: 1
+    m_Size: 3
+    m_Color: {r: .0205312781, g: .0538461804, b: 0, a: 0}
+    m_UseLightColor: 1
+    m_Rotate: 1
+    m_Zoom: 1
+    m_Fade: 1
+  - m_ImageIndex: 4
+    m_Position: .850000024
+    m_Size: 2
+    m_Color: {r: .0359712094, g: .0769230723, b: 0, a: 0}
+    m_UseLightColor: 1
+    m_Rotate: 1
+    m_Zoom: 1
+    m_Fade: 1
+  - m_ImageIndex: 4
+    m_Position: 2
+    m_Size: 1
+    m_Color: {r: .0223668646, g: .0954569951, b: .161538482, a: 0}
+    m_UseLightColor: 1
+    m_Rotate: 1
+    m_Zoom: 1
+    m_Fade: 1
+  - m_ImageIndex: 3
+    m_Position: .200000003
+    m_Size: 50
+    m_Color: {r: .199999988, g: .199999988, b: .199999988, a: 0}
+    m_UseLightColor: 1
+    m_Rotate: 1
+    m_Zoom: 1
+    m_Fade: 1
+  - m_ImageIndex: 3
+    m_Position: .200000003
+    m_Size: 100
+    m_Color: {r: .130769253, g: .130769253, b: .130769253, a: 0}
+    m_UseLightColor: 1
+    m_Rotate: 1
+    m_Zoom: 1
+    m_Fade: 1
+  - m_ImageIndex: 4
+    m_Position: 3
+    m_Size: 4
+    m_Color: {r: .0153846145, g: .0153846145, b: .0153846145, a: 0}
+    m_UseLightColor: 1
+    m_Rotate: 1
+    m_Zoom: 1
+    m_Fade: 1
+  - m_ImageIndex: 4
+    m_Position: 2
+    m_Size: 4
+    m_Color: {r: .0153846145, g: .0153846145, b: .0153846145, a: 0}
+    m_UseLightColor: 1
+    m_Rotate: 1
+    m_Zoom: 1
+    m_Fade: 1
+  - m_ImageIndex: 4
+    m_Position: 2.5
+    m_Size: 2
+    m_Color: {r: .038461566, g: .038461566, b: .038461566, a: 0}
+    m_UseLightColor: 1
+    m_Rotate: 1
+    m_Zoom: 1
+    m_Fade: 1
+  - m_ImageIndex: 4
+    m_Position: 3
+    m_Size: 3
+    m_Color: {r: .0538461804, g: .0538461804, b: .0538461804, a: 0}
+    m_UseLightColor: 1
+    m_Rotate: 1
+    m_Zoom: 1
+    m_Fade: 1
+  - m_ImageIndex: 4
+    m_Position: 2.75
+    m_Size: 6
+    m_Color: {r: .0153846145, g: .0153846145, b: .0153846145, a: 0}
+    m_UseLightColor: 1
+    m_Rotate: 1
+    m_Zoom: 1
+    m_Fade: 1
+  - m_ImageIndex: 4
+    m_Position: 1.79999995
+    m_Size: 2
+    m_Color: {r: .0153846145, g: .0153846145, b: .0153846145, a: 0}
+    m_UseLightColor: 1
+    m_Rotate: 1
+    m_Zoom: 1
+    m_Fade: 1
+  m_UseFog: 1
+--- !u!1002 &12100001
+EditorExtensionImpl:
+  serializedVersion: 6
