@@ -1,32 +1,40 @@
 fileFormatVersion: 2
-guid: 409c2efade1cdb34ea6dcef4ca9a9e1e
-timeCreated: 1436415557
+guid: 18797a81c2af61448a0b030edb825927
+timeCreated: 1436583487
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Cube
-    100004: Cube_001
-    100006: faceBullet
-    400000: //RootNode
-    400002: Cube
-    400004: Cube_001
-    400006: faceBullet
-    2300000: //RootNode
-    2300002: Cube
-    2300004: Cube_001
-    2300006: faceBullet
-    3300000: //RootNode
-    3300002: Cube
-    3300004: Cube_001
-    3300006: faceBullet
+    100000: Armature
+    100002: Bone
+    100004: Bone_001
+    100006: Bone_002
+    100008: Bone_003
+    100010: Bone_004
+    100012: Bone_005
+    100014: Bone_006
+    100016: Bone_007
+    100018: Bone_008
+    100020: Cube
+    100022: //RootNode
+    400000: Armature
+    400002: Bone
+    400004: Bone_001
+    400006: Bone_002
+    400008: Bone_003
+    400010: Bone_004
+    400012: Bone_005
+    400014: Bone_006
+    400016: Bone_007
+    400018: Bone_008
+    400020: Cube
+    400022: //RootNode
     4300000: Cube
-    4300002: Cube_001
-    4300004: faceBullet
     7400000: Default Take
+    7400002: Something
+    7400004: ArmatureAction
     9500000: //RootNode
-    11100000: //RootNode
+    13700000: Cube
   materials:
     importMaterials: 1
     materialName: 0
@@ -84,7 +92,7 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 1
+  animationType: 2
   additionalBone: 0
   userData: 
   assetBundleName: 

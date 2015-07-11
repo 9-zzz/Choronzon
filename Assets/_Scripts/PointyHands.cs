@@ -8,13 +8,22 @@ public class PointyHands : MonoBehaviour
     public float smoothLookAtSpeed;
     public float distFromPlayer;
     public bool charging = false;
+    public bool powerOn = false;
+    public bool hasPoweredOn = false;
     public Color redEmColor;
+    public Color originalRedEmColor;
 
     Light spLight;
     GameObject sp; // Spawnpoint
     GameObject player;
     //Rigidbody rb;
     Rigidbody rbParent;
+
+    void Awake()
+    {
+        //originalRedEmColor = GetComponent<Renderer>().materials[0].color;
+        //GetComponent<Renderer>().materials[0].SetColor("_EmissionColor", redEmColor);
+    }
 
     // Use this for initialization
     void Start()
@@ -25,7 +34,6 @@ public class PointyHands : MonoBehaviour
         spLight = sp.GetComponent<Light>();
         player = GameObject.Find("Player");
         StartCoroutine(moveCycle());
-        //redEmColor = GetComponent<Renderer>().materials[0].color;
         this.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
     }
 
@@ -39,21 +47,51 @@ public class PointyHands : MonoBehaviour
 
         GetComponent<Renderer>().materials[0].SetColor("_EmissionColor", redEmColor);
 
-        if (charging)
+        ChargingFX();
+
+        if (hasPoweredOn == false)
+            PowerOnFX();
+    }
+
+    void PowerOnFX()
+    {
+        if (powerOn)
         {
-            redEmColor = Color.Lerp(redEmColor, Color.red, 2 * Time.deltaTime);
-            spLight.intensity = Mathf.Lerp(spLight.intensity, 0.4f, 2 * Time.deltaTime);
+            ColorAndLightFX(Color.red, 10.0f, 0.95f, 10.0f);
         }
         else
         {
-            redEmColor = Color.Lerp(redEmColor, Color.black, 1 * Time.deltaTime);
-            spLight.intensity = Mathf.Lerp(spLight.intensity, 0, 1.6f * Time.deltaTime);
+            ColorAndLightFX(Color.black, 5.0f, 0.0f, 5.0f);
         }
+    }
+
+    void ChargingFX()
+    {
+        if (charging)
+        {
+            ColorAndLightFX(Color.red, 2.0f, 0.25f, 2.0f);
+        }
+        else
+        {
+            ColorAndLightFX(Color.black, 1.0f, 0.0f, 1.6f);
+        }
+    }
+
+    void ColorAndLightFX(Color targetColor, float cSpeed, float targetIntensity, float lSpeed)
+    {
+        redEmColor = Color.Lerp(redEmColor, targetColor, cSpeed * Time.deltaTime);
+        spLight.intensity = Mathf.Lerp(spLight.intensity, targetIntensity, lSpeed * Time.deltaTime);
     }
 
     IEnumerator moveCycle()
     {
-        yield return new WaitForSeconds(2.5f);
+        //yield return new WaitForSeconds(0.25f);
+        powerOn = true;
+        yield return new WaitForSeconds(0.25f);
+        powerOn = false;
+        yield return new WaitForSeconds(2.0f);
+        hasPoweredOn = true;
+        redEmColor = Color.black;
         while (true)
         {
             rbParent.AddRelativeForce(0, 0, 2, ForceMode.VelocityChange);
