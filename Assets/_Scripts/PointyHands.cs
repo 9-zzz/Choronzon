@@ -42,7 +42,7 @@ public class PointyHands : MonoBehaviour
     {
         distFromPlayer = Vector3.Distance(transform.position, player.transform.position);
         goSmoothLookAt(transform.parent.gameObject, player.transform.position);
-        goSmoothLookAt(sp, player.transform.position);
+        spSmoothLookAt(sp, player.transform.position);
         //SmoothLookAt(player.transform.position);
 
         GetComponent<Renderer>().materials[0].SetColor("_EmissionColor", redEmColor);
@@ -69,7 +69,7 @@ public class PointyHands : MonoBehaviour
     {
         if (charging)
         {
-            ColorAndLightFX(Color.red, 2.0f, 0.25f, 2.0f);
+            ColorAndLightFX(Color.red, 2.0f, 0.45f, 2.0f);
         }
         else
         {
@@ -95,17 +95,24 @@ public class PointyHands : MonoBehaviour
         while (true)
         {
             rbParent.AddRelativeForce(0, 0, 2, ForceMode.VelocityChange);
+
             if (Random.Range(0, 3) == 0)
             {
                 rbParent.AddRelativeForce(1, 0, 3, ForceMode.VelocityChange);
             }
+
+            if (distFromPlayer < 100)
+            {
+                rbParent.velocity = Vector3.zero;
+                rbParent.AddRelativeForce(0, 0, 5, ForceMode.VelocityChange);
+            }
+
             if (distFromPlayer < 20)
             {
                 yield return new WaitForSeconds(2.0f);
                 rbParent.velocity = Vector3.zero;
                 charging = true;
-                yield return new WaitForSeconds(0.5f);
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.4f);
                 FaceShoot();
                 yield return new WaitForSeconds(0.1f);
                 FaceShoot();
@@ -126,9 +133,16 @@ public class PointyHands : MonoBehaviour
         Instantiate(faceBullet, sp.transform.position, sp.transform.rotation);
     }
 
+    void spSmoothLookAt(GameObject go, Vector3 pointToLookAt)
+    {
+        Vector3 newDirection = pointToLookAt - go.transform.position; // Get the direction to look in.
+        go.transform.rotation = Quaternion.Slerp(go.transform.rotation, Quaternion.LookRotation(newDirection), (smoothLookAtSpeed * 4.0f) * Time.deltaTime);
+    }
+
     void goSmoothLookAt(GameObject go, Vector3 pointToLookAt)
     {
         Vector3 newDirection = pointToLookAt - go.transform.position; // Get the direction to look in.
+        newDirection.y = 0;
         go.transform.rotation = Quaternion.Slerp(go.transform.rotation, Quaternion.LookRotation(newDirection), (smoothLookAtSpeed * 4.0f) * Time.deltaTime);
     }
 

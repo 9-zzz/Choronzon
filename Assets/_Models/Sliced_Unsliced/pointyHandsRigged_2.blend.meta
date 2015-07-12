@@ -33,6 +33,7 @@ ModelImporter:
     7400000: Default Take
     7400002: Something
     7400004: ArmatureAction
+    7400006: ArmatureAction0
     9500000: //RootNode
     13700000: Cube
   materials:
@@ -54,7 +55,57 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: ArmatureAction
+      takeName: ArmatureAction
+      firstFrame: -1
+      lastFrame: 19
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Bone
+        weight: 1
+      - path: Armature/Bone/Bone_001
+        weight: 1
+      - path: Armature/Bone/Bone_001/Bone_002
+        weight: 1
+      - path: Armature/Bone/Bone_001/Bone_003
+        weight: 1
+      - path: Armature/Bone/Bone_001/Bone_003/Bone_004
+        weight: 1
+      - path: Armature/Bone/Bone_001/Bone_003/Bone_004/Bone_005
+        weight: 1
+      - path: Armature/Bone/Bone_001/Bone_006
+        weight: 1
+      - path: Armature/Bone/Bone_001/Bone_006/Bone_007
+        weight: 1
+      - path: Armature/Bone/Bone_001/Bone_006/Bone_007/Bone_008
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []

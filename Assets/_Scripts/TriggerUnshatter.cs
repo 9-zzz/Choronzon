@@ -26,9 +26,12 @@ public class TriggerUnshatter : MonoBehaviour
         foreach (ReturnToStartingPosition script in cScripts)
         {
             script.driftSeconds = setDriftSeconds;
-            StartCoroutine(setWholeBool(setDriftSeconds));
+            setDriftSeconds = setDriftSeconds + 0.06f;
+
+            script.gameObject.GetComponent<Collider>().isTrigger = true;
             script.StartDrift();
         }
+            StartCoroutine(setWholeBool(setDriftSeconds));
     }
 
     IEnumerator setWholeBool(float t)

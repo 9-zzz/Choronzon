@@ -36,8 +36,10 @@ public class KeepHeightAboveGround : MonoBehaviour
         //Vector3.Lerp(transform.position, desiredPos, 0.45f * Time.deltaTime);
 
         if (reachedPos)
+        {
+            //if (hit.collider.gameObject.tag == "terrain")
             transform.position = Vector3.MoveTowards(transform.position, desiredPos, step * 2);
-
+        }
         //transform.position = desiredPos;
     }
 
