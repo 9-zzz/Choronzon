@@ -13,6 +13,7 @@ GameObject:
   - 95: {fileID: 9543754}
   - 114: {fileID: 11443924}
   - 54: {fileID: 5408920}
+  - 65: {fileID: 6548168}
   m_Layer: 2
   m_Name: pointyHandsBody
   m_TagString: Untagged
@@ -73,7 +74,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 171160}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .290187806, y: 5.01999998, z: 29.3600006}
+  m_LocalPosition: {x: 4.61546278, y: 3.92000008, z: 43.2679749}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 439332}
@@ -168,6 +169,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.5, y: 3.84032154, z: 1.53930283}
   m_Center: {x: 0, y: -.557279587, z: -.269649506}
+--- !u!65 &6548168
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111752}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.20775414, y: 2.29791927, z: .582059264}
+  m_Center: {x: 0, y: 1.40171099, z: -1.10568237}
 --- !u!95 &9543754
 Animator:
   serializedVersion: 3
@@ -244,6 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faceBullet: {fileID: 128736, guid: 531e58b12215f5a4b885e5f0d20e8819, type: 2}
+  shatteredPointyHands: {fileID: 110258, guid: 30c22aa9045d83e458caa0ac0ced20d4, type: 2}
   smoothLookAtSpeed: 2.5
   distFromPlayer: 0
   charging: 0
@@ -251,6 +265,7 @@ MonoBehaviour:
   hasPoweredOn: 0
   redEmColor: {r: 0, g: 0, b: 0, a: 0}
   originalRedEmColor: {r: 0, g: 0, b: 0, a: 0}
+  hp: 20
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

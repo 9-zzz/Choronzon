@@ -5,6 +5,7 @@ public class PointyHands : MonoBehaviour
 {
 
     public GameObject faceBullet;
+    public GameObject shatteredPointyHands;
     public float smoothLookAtSpeed;
     public float distFromPlayer;
     public bool charging = false;
@@ -12,6 +13,8 @@ public class PointyHands : MonoBehaviour
     public bool hasPoweredOn = false;
     public Color redEmColor;
     public Color originalRedEmColor;
+
+    public float hp = 20;
 
     Light spLight;
     GameObject sp; // Spawnpoint
@@ -154,6 +157,19 @@ public class PointyHands : MonoBehaviour
         // Use Quaternion.RotateTowards for consistent results
         // For handling a desired acceleration/approach model Unity provides 
         //Mathf.SmoothDamp which produces far more consistent results than that kind of critically damped lerp
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "faceBullet")
+        {
+            hp -= 5.0f;
+            if (hp == 0)
+            {
+                Instantiate(shatteredPointyHands, transform.position, transform.rotation);
+                Destroy(gameObject);
+            }
+        }
     }
 
 }
