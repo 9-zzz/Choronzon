@@ -32,6 +32,12 @@ public class DamageHandler : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (other.tag == "GiraHand")
+        {
+            StartCoroutine(damageFlash());
+            HealthBar.S.hp -= 10.0f;
+        }
+
         if (other.tag == "missile")
         {
             StartCoroutine(damageFlash());
@@ -41,7 +47,7 @@ public class DamageHandler : MonoBehaviour
         if (other.tag == "faceBullet")
         {
             StartCoroutine(damageFlash());
-            HealthBar.S.hp -= 2.0f;
+            HealthBar.S.hp -= 5.0f;
         }
     }
 

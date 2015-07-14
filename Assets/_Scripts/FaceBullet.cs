@@ -10,8 +10,8 @@ public class FaceBullet : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.AddRelativeForce(0, 0, 20, ForceMode.Impulse);
-        Destroy(gameObject, 3.0f);
+        rb.AddRelativeForce(0, 0, 15, ForceMode.Impulse); // 20 originally
+        Destroy(gameObject, 6.0f);
     }
 
     // Update is called once per frame

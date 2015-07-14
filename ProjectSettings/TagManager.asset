@@ -8,6 +8,7 @@ TagManager:
   - missile
   - faceBullet
   - terrain
+  - GiraHand
   layers:
   - Default
   - TransparentFX

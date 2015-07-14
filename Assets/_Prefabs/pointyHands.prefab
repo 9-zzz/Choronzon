@@ -260,6 +260,7 @@ MonoBehaviour:
   shatteredPointyHands: {fileID: 110258, guid: 30c22aa9045d83e458caa0ac0ced20d4, type: 2}
   smoothLookAtSpeed: 2.5
   distFromPlayer: 0
+  knockedOut: 0
   charging: 0
   powerOn: 0
   hasPoweredOn: 0

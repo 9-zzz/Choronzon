@@ -8,13 +8,14 @@ public class PointyHands : MonoBehaviour
     public GameObject shatteredPointyHands;
     public float smoothLookAtSpeed;
     public float distFromPlayer;
+    public bool knockedOut = false;
     public bool charging = false;
     public bool powerOn = false;
     public bool hasPoweredOn = false;
     public Color redEmColor;
     public Color originalRedEmColor;
 
-    public float hp = 20;
+    public float hp = 15;
 
     Light spLight;
     GameObject sp; // Spawnpoint
@@ -35,7 +36,8 @@ public class PointyHands : MonoBehaviour
         rbParent = transform.parent.GetComponent<Rigidbody>();
         sp = transform.GetChild(0).gameObject;
         spLight = sp.GetComponent<Light>();
-        player = GameObject.Find("Player");
+        //player = GameObject.Find("CPlayer"); // *****************************************************!!!!@@@###$$$%%%
+        player = Camera.main.gameObject.transform.GetChild(1).gameObject;
         StartCoroutine(moveCycle());
         this.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
     }
@@ -43,16 +45,20 @@ public class PointyHands : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        distFromPlayer = Vector3.Distance(transform.position, player.transform.position);
-        goSmoothLookAt(transform.parent.gameObject, player.transform.position);
-        spSmoothLookAt(sp, player.transform.position);
-        //SmoothLookAt(player.transform.position);
-
         GetComponent<Renderer>().materials[0].SetColor("_EmissionColor", redEmColor);
+
+        distFromPlayer = Vector3.Distance(transform.position, player.transform.position);
+
+        if (!knockedOut) // So he stops turning and you can go attack his back.
+        {
+            goSmoothLookAt(transform.parent.gameObject, player.transform.position);
+            spSmoothLookAt(sp, player.transform.position);
+            //SmoothLookAt(player.transform.position);
+        }
 
         ChargingFX();
 
-        if (hasPoweredOn == false)
+        if (hasPoweredOn == false) // Only once.
             PowerOnFX();
     }
 
@@ -64,7 +70,11 @@ public class PointyHands : MonoBehaviour
         }
         else
         {
-            ColorAndLightFX(Color.black, 5.0f, 0.0f, 5.0f);
+            // Wanted the emission to not be black, 
+            // and have the glow on a Sin function 
+            // TOO HARD RIGHT NOW, NOT IMPORTANT R/N
+            //     var colorSlightEm = new Color(0.3f, 0.0f, 0.0f); // Slightly brighter neutral state, worked, but meh.
+            ColorAndLightFX(Color.black, 5.0f, 0.0f, 5.0f); // Last color set to after power on.
         }
     }
 
@@ -94,42 +104,53 @@ public class PointyHands : MonoBehaviour
         powerOn = false;
         yield return new WaitForSeconds(2.0f);
         hasPoweredOn = true;
-        redEmColor = Color.black;
+        //redEmColor = Color.black; // Slight em color problem?
         while (true)
-        {
-            rbParent.AddRelativeForce(0, 0, 2, ForceMode.VelocityChange);
-
-            if (Random.Range(0, 3) == 0)
+            if (!knockedOut)
             {
-                rbParent.AddRelativeForce(1, 0, 3, ForceMode.VelocityChange);
-            }
+                {
+                    rbParent.AddRelativeForce(0, 0, 2, ForceMode.VelocityChange);
 
-            if (distFromPlayer < 100)
-            {
-                rbParent.velocity = Vector3.zero;
-                rbParent.AddRelativeForce(0, 0, 5, ForceMode.VelocityChange);
-            }
+                    if (Random.Range(0, 3) == 0)
+                    {
+                        rbParent.AddRelativeForce(1, 0, 3, ForceMode.VelocityChange);
+                    }
 
-            if (distFromPlayer < 20)
-            {
-                yield return new WaitForSeconds(2.0f);
-                rbParent.velocity = Vector3.zero;
-                charging = true;
-                yield return new WaitForSeconds(0.4f);
-                FaceShoot();
-                yield return new WaitForSeconds(0.1f);
-                FaceShoot();
-                yield return new WaitForSeconds(0.1f);
-                FaceShoot();
-                yield return new WaitForSeconds(0.1f);
-                FaceShoot();
-                yield return new WaitForSeconds(0.1f);
-                FaceShoot();
-                charging = false;
+                    if (distFromPlayer < 100)
+                    {
+                        rbParent.velocity = Vector3.zero;
+                        rbParent.AddRelativeForce(0, 0, 5, ForceMode.VelocityChange);
+                    }
+
+                    if (distFromPlayer < 20)
+                    {
+                        yield return new WaitForSeconds(2.0f);
+                        rbParent.velocity = Vector3.zero;
+                        charging = true;
+                        yield return new WaitForSeconds(0.4f);
+                        FaceShoot();
+                        yield return new WaitForSeconds(0.5f);
+                        FaceShoot();
+                        yield return new WaitForSeconds(0.5f);
+                        FaceShoot();
+                        yield return new WaitForSeconds(0.5f);
+                        FaceShoot();
+                        yield return new WaitForSeconds(0.5f);
+                        FaceShoot();
+                        charging = false;
+                    }
+                    yield return new WaitForSeconds(2.5f);
+                }
             }
-            yield return new WaitForSeconds(2.0f);
-        }
-    }
+            else
+            {
+                // If Gira is knocked out
+                print("KNOCKED OUT THE GIRA GO AND KILL IT!!!");
+                yield return new WaitForSeconds(10.0f);
+                knockedOut = false;
+                hp = 15;
+            }
+    } // End of Move Cycle Coroutine.
 
     void FaceShoot()
     {
@@ -159,16 +180,42 @@ public class PointyHands : MonoBehaviour
         //Mathf.SmoothDamp which produces far more consistent results than that kind of critically damped lerp
     }
 
+    IEnumerator hurtFlash(int flashes)
+    {
+        rbParent.velocity = Vector3.zero; // Stop when hurt?
+        var flashTime = 0.04f;
+        for (int i = 0; i < flashes; i++)
+        {
+            redEmColor = Color.red;
+            yield return new WaitForSeconds(flashTime);
+            redEmColor = Color.black;
+            yield return new WaitForSeconds(flashTime);
+        }
+    }
+
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "faceBullet")
+        if (other.tag == "sword")
         {
-            hp -= 5.0f;
-            if (hp == 0)
+            if (knockedOut)
             {
                 Instantiate(shatteredPointyHands, transform.position, transform.rotation);
                 Destroy(gameObject);
             }
+        }
+
+        if (other.tag == "faceBullet")
+        {
+            // So stray bullets can't hit more than one Gira, Maybe that's mean....
+            //if (other.GetComponent<Collider>() != null) other.GetComponent<Collider>().enabled = false;
+
+            hp -= 5.0f;
+            if (hp == 0)
+            {
+                knockedOut = true;
+                StartCoroutine(hurtFlash(70));
+            }
+            StartCoroutine(hurtFlash(16));
         }
     }
 

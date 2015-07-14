@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -21,7 +21,6 @@ public class RPGTextTyper : MonoBehaviour
         S = this;
 
         targetText = transform.GetChild(0).GetComponent<Text>(); // Only if you place this on my specific object setup of UI Image with child UI Text.
-
         this.GetComponent<Image>().CrossFadeAlpha(0, 0, true);
         targetText.CrossFadeAlpha(0, 0, true);
     }
