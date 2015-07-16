@@ -598,6 +598,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &198284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 473086}
+  - 108: {fileID: 10824770}
+  m_Layer: 2
+  m_Name: Point light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &199980
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,6 +862,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 475528}
   m_RootOrder: 10
+--- !u!4 &473086
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198284}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.18000007, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 475528}
+  m_RootOrder: 30
 --- !u!4 &473782
 Transform:
   m_ObjectHideFlags: 1
@@ -910,6 +938,7 @@ Transform:
   - {fileID: 427576}
   - {fileID: 481242}
   - {fileID: 448776}
+  - {fileID: 473086}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &476484
@@ -2780,6 +2809,38 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 1
   m_Mesh: {fileID: 4300050, guid: 31ce1cd83c2896c44a428cbbc0112730, type: 3}
+--- !u!108 &10824770
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198284}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_Type: 2
+  m_Color: {r: .985294104, g: .101427317, b: .595173776, a: 1}
+  m_Intensity: .49000001
+  m_Range: 2.28999996
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_NormalBias: .400000006
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 1
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_BounceIntensity: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_AreaSize: {x: 1, y: 1}
 --- !u!114 &11400954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2907,9 +2968,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc4e713f702a64f44a3620be2d0472c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FrippLight: {fileID: 10824770}
   setDriftSeconds: .5
   cScripts: []
   isWhole: 0
+  triggered: 0
 --- !u!114 &11420446
 MonoBehaviour:
   m_ObjectHideFlags: 1

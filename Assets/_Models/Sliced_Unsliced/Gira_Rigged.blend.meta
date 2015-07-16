@@ -36,6 +36,7 @@ ModelImporter:
     7400006: KnockedOut1
     7400008: GiraAttack
     7400010: GiraIdle2
+    7400012: GiraStabAttack
     9500000: //RootNode
     13700000: Cube
   materials:
@@ -79,7 +80,7 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 0
     splitTangentsAcrossUV: 0
-    normalImportMode: 1
+    normalImportMode: 0
     tangentImportMode: 1
   importAnimation: 1
   copyAvatar: 0

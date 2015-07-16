@@ -9,6 +9,8 @@ TagManager:
   - faceBullet
   - terrain
   - GiraHand
+  - FrippGem
+  - healthPickUp
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - 
   - 
   - pointyHandPieces
-  - 
+  - healthPickUps
   - 
   - 
   - 

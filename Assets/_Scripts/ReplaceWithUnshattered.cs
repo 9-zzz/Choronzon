@@ -18,7 +18,7 @@ public class ReplaceWithUnshattered : MonoBehaviour
         if (GetComponent<TriggerUnshatter>().isWhole)
         {
             Destroy(GetComponent<SphereCollider>()); // Location shifting... WEIRD 
-            Instantiate(pointyHands, transform.position - transform.up * 2.56f, transform.rotation);
+            Instantiate(pointyHands, transform.position - transform.up * 2.8f, transform.rotation);
             Destroy(gameObject);
         }
     }

@@ -51,7 +51,7 @@ public class CreepyShakeRot : MonoBehaviour
       Destroy(gameObject);
     }
 
-    if (Vector3.Distance(ArcherRef.transform.position, transform.position) < 40)
+    //if (Vector3.Distance(ArcherRef.transform.position, transform.position) < 40)
       transform.LookAt(ArcherRef.transform.position);
 
   }

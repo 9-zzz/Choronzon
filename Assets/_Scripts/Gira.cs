@@ -4,6 +4,8 @@ using System.Collections;
 public class Gira: MonoBehaviour
 {
 
+    public GameObject frippGem;
+    public GameObject healthPickUp;
     public GameObject GiraContainer;
     public Rigidbody rbParent;
     public GameObject faceBullet;
@@ -19,13 +21,13 @@ public class Gira: MonoBehaviour
     public bool hasPoweredOn = false;
     public Color redEmColor;
     public Color originalRedEmColor;
+    public GameObject hoverDirt;
 
     public float hp = 15;
 
     Light spLight;
     public GameObject sp; // Spawnpoint
     GameObject player;
-    //Rigidbody rb;
     public Animator parentAnim;
 
     void Awake()
@@ -125,51 +127,54 @@ public class Gira: MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         hasPoweredOn = true;
         //redEmColor = Color.black; // Slight em color problem?
+
         while (true)
-            if (!knockedOut )
+        {
+
+            if (!knockedOut)
             {
+                rbParent.AddRelativeForce(0, 0, 2, ForceMode.VelocityChange);
+
+                if (Random.Range(0, 3) == 0)
                 {
-                    rbParent.AddRelativeForce(0, 0, 2, ForceMode.VelocityChange);
-
-                    if (Random.Range(0, 3) == 0)
-                    {
-                        rbParent.AddRelativeForce(1, 0, 3, ForceMode.VelocityChange);
-                    }
-
-                    if (distFromPlayer < 100)
-                    {
-                        rbParent.velocity = Vector3.zero;
-                        rbParent.AddRelativeForce(0, 0, 5, ForceMode.VelocityChange);
-                    }
-
-                    if (distFromPlayer < 20)
-                    {
-                        yield return new WaitForSeconds(2.0f);
-                        rbParent.velocity = Vector3.zero;
-                        charging = true;
-                        yield return new WaitForSeconds(0.4f);
-                        FaceShoot();
-                        yield return new WaitForSeconds(0.5f);
-                        FaceShoot();
-                        yield return new WaitForSeconds(0.5f);
-                        FaceShoot();
-                        yield return new WaitForSeconds(0.5f);
-                        FaceShoot();
-                        yield return new WaitForSeconds(0.5f);
-                        FaceShoot();
-                        charging = false;
-                    }
-                    yield return new WaitForSeconds(2.5f);
+                    rbParent.AddRelativeForce(1, 0, 3, ForceMode.VelocityChange);
                 }
+
+                if (distFromPlayer < 100)
+                {
+                    rbParent.velocity = Vector3.zero;
+                    rbParent.AddRelativeForce(0, 0, 5, ForceMode.VelocityChange);
+                }
+
+                if (distFromPlayer < 20)
+                {
+                    yield return new WaitForSeconds(2.0f);
+                    rbParent.velocity = Vector3.zero;
+                    charging = true;
+                    yield return new WaitForSeconds(0.4f);
+                    FaceShoot();
+                    yield return new WaitForSeconds(0.5f);
+                    FaceShoot();
+                    yield return new WaitForSeconds(0.5f);
+                    FaceShoot();
+                    yield return new WaitForSeconds(0.5f);
+                    FaceShoot();
+                    yield return new WaitForSeconds(0.5f);
+                    FaceShoot();
+                    charging = false;
+                }
+                yield return new WaitForSeconds(2.5f);
             }
             else
             {
                 // If Gira is knocked out
                 yield return new WaitForSeconds(10.0f);
                 knockedOut = false;
+                hoverDirt.GetComponent<ParticleSystem>().Play();
                 parentAnim.SetBool("knockedOut", false);
                 hp = 15;
             }
+        }
     } // End of Move Cycle Coroutine.
 
     void FaceShoot()
@@ -200,6 +205,19 @@ public class Gira: MonoBehaviour
         //Mathf.SmoothDamp which produces far more consistent results than that kind of critically damped lerp
     }
 
+    IEnumerator knockedOutGlow(int glows)
+    {
+        rbParent.velocity = Vector3.zero; // Stop when hurt?
+        var flashTime = 1.75f;
+        for (int i = 0; i < glows; i++)
+        {
+            charging = true;
+            yield return new WaitForSeconds(flashTime);
+            charging = false;
+            yield return new WaitForSeconds(flashTime);
+        }
+    }
+
     IEnumerator hurtFlash(int flashes)
     {
         rbParent.velocity = Vector3.zero; // Stop when hurt?
@@ -217,27 +235,38 @@ public class Gira: MonoBehaviour
     {
         if (other.tag == "sword")
         {
-            if (knockedOut)
+            if (knockedOut && Melee.S.isSlashing)
             {
+                Instantiate(healthPickUp, GiraContainer.transform.position + GiraContainer.transform.up * 2.8f, GiraContainer.transform.rotation);
+                Instantiate(healthPickUp, GiraContainer.transform.position + GiraContainer.transform.up * 2.8f, GiraContainer.transform.rotation);
+                Instantiate(healthPickUp, GiraContainer.transform.position + GiraContainer.transform.up * 2.8f, GiraContainer.transform.rotation);
+                Instantiate(healthPickUp, GiraContainer.transform.position + GiraContainer.transform.up * 2.8f, GiraContainer.transform.rotation);
+                Instantiate(frippGem, GiraContainer.transform.position + GiraContainer.transform.up * 2.8f, GiraContainer.transform.rotation);
+                //fg.transform.GetChild(1).GetComponent<Collider>().enabled = true;
+                //fg.transform.GetChild(1).GetComponent<Rigidbody>().useGravity = true;
+
                 // Issues with spawning at centers of mass on rigged armature...
-                Instantiate(shatteredPointyHands, GiraContainer.transform.position + GiraContainer.transform.up * 2.56f, GiraContainer.transform.rotation);
-                Destroy(gameObject);
+                Instantiate(shatteredPointyHands, GiraContainer.transform.position + GiraContainer.transform.up * 2.8f, GiraContainer.transform.rotation);
+                Destroy(GiraContainer);
             }
         }
 
+        // So stray bullets can't hit more than one Gira, Maybe that's mean....
+        //if (other.GetComponent<Collider>() != null) other.GetComponent<Collider>().enabled = false;
         if (other.tag == "faceBullet")
         {
-            // So stray bullets can't hit more than one Gira, Maybe that's mean....
-            //if (other.GetComponent<Collider>() != null) other.GetComponent<Collider>().enabled = false;
-
-            hp -= 5.0f;
-            if (hp == 0)
+            if (other.GetComponent<FaceBullet>().wasReflected == true)
             {
-                knockedOut = true;
-                parentAnim.SetBool("knockedOut", true);
-                StartCoroutine(hurtFlash(70));
+                hp -= 5.0f;
+                if (hp == 0)
+                {
+                    knockedOut = true;
+                    hoverDirt.GetComponent<ParticleSystem>().Stop();
+                    parentAnim.SetBool("knockedOut", true);
+                    StartCoroutine(knockedOutGlow(3));
+                }
+                StartCoroutine(hurtFlash(16));
             }
-            StartCoroutine(hurtFlash(16));
         }
     }
 

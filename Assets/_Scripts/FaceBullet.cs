@@ -5,6 +5,7 @@ public class FaceBullet : MonoBehaviour
 {
 
     Rigidbody rb;
+    public bool wasReflected = false;
 
     // Use this for initialization
     void Start()

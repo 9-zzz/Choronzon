@@ -9,6 +9,7 @@ public class TP_Controller : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
+        DontDestroyOnLoad(transform.gameObject);
         CharacterController = GetComponent("CharacterController") as CharacterController;
         Instance = this;
     }

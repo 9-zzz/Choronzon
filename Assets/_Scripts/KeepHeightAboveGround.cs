@@ -3,17 +3,24 @@ using System.Collections;
 
 public class KeepHeightAboveGround : MonoBehaviour
 {
+    public static KeepHeightAboveGround S;
 
     RaycastHit hit;
     public float heightAboveGround;
     public bool reachedPos = false;
     public bool lockedToGround = false;
     public Vector3 desiredPos;
+    public GameObject hoverDirt;
+
+    void Awake()
+    {
+        S = this;
+    }
 
     // Use this for initialization
     void Start()
     {
-
+        hoverDirt = transform.GetChild(1).gameObject;
     }
 
     // Update is called once per frame
@@ -41,6 +48,8 @@ public class KeepHeightAboveGround : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, desiredPos, step * 2);
         }
         //transform.position = desiredPos;
+
+        hoverDirt.transform.position = hit.point;
     }
 
 }

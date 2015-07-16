@@ -4,9 +4,11 @@ using System.Collections;
 public class TriggerUnshatter : MonoBehaviour
 {
 
+    public Light FrippLight;
     public float setDriftSeconds;
     public Component[] cScripts;
     public bool isWhole = false;
+    public bool triggered = false;
 
     // Use this for initialization
     void Start()
@@ -17,7 +19,8 @@ public class TriggerUnshatter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (triggered)
+            FrippLight.intensity = Mathf.Lerp(FrippLight.intensity, 0.0f, Time.deltaTime * 2.0f);
     }
 
     void ActivateInAllChildren()
@@ -31,7 +34,7 @@ public class TriggerUnshatter : MonoBehaviour
             script.gameObject.GetComponent<Collider>().isTrigger = true;
             script.StartDrift();
         }
-            StartCoroutine(setWholeBool(setDriftSeconds));
+        StartCoroutine(setWholeBool(setDriftSeconds));
     }
 
     IEnumerator setWholeBool(float t)
@@ -43,7 +46,11 @@ public class TriggerUnshatter : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals("Player"))
+        {
             ActivateInAllChildren();
+            triggered = true;
+
+        }
     }
 
 
